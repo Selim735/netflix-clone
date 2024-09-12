@@ -20,7 +20,7 @@ export default function login() {
             </form>
             <div className="text-gray-500 text-sm mt-2">
                 New to Netflix {""}
-                <Link className="text-white hover:underline" href="/Sign-up">Sign up now!</Link>
+                <Link className="text-white hover:underline" href="/sign-up">Sign up now!</Link>
             </div>
 
             <div className="flex w-full justify-center items-center gap-x-3 mt-6">

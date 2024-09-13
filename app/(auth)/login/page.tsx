@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Icon, Outdent } from "lucide-react";
-/** icons*/
-import { FaGithub } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-/**fin icons*/
 import Link from "next/link";
+import GithubSignInButton from "../../components/GithubSigninButton";
+import GoogleSigninButton from "../../components/GoogleSigninButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/utils/auth";
+import { redirect } from "next/navigation";
 
-export default function login() {
+export default async function login() {
+    const session = await getServerSession(authOptions)
+
+    if (session) {
+        return redirect('/home');
+    }
     return (
         <div className="mt-24 rounded bg-black/80 py-10 px-6 md:mt-0 md:max-w-sm md:px-14">
             <form>
@@ -24,17 +28,8 @@ export default function login() {
             </div>
 
             <div className="flex w-full justify-center items-center gap-x-3 mt-6">
-                <Button variant={"outline"} size="icon">
-                    <FaGithub className="w-4 h-4 "/>
-                </Button>
-
-                <Button variant={"outline"} size="icon">
-                    <FaFacebook className="w-4 h-4 "/>
-                </Button>
-
-                <Button variant={"outline"} size="icon">
-                    <FcGoogle className="w-4 h-4 "/>
-                </Button>
+                <GithubSignInButton/>
+                <GoogleSigninButton/>
 
 
 

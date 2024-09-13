@@ -7,8 +7,15 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 /**fin icons*/
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/utils/auth";
+import { redirect } from "next/navigation";
 
-export default function signUp(){
+export default async function signUp(){
+    const session = await getServerSession(authOptions)
+    if(session) {
+        redirect('/home')
+    }
     return(
         <div className="mt-24 rounded bg-black/80 py-10 px-6 md:mt-0 md:max-w-sm md:px-14">
             <form>

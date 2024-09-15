@@ -1,5 +1,8 @@
+import MovieVideo from "@/components/ui/MovieVideo";
+import Navbar from "../components/Navbar";
+
 export default function HomePage() {
     return(
-        <h1>Hello auth user</h1>
+        <MovieVideo/>
     )
 }

@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 datasource db {
   provider   = "postgresql"
   url        = env("DATABASE_URL")
@@ -54,6 +51,31 @@ model User {
   sessions      Session[]
  
   @@map("users")
+}
+
+model Movie {
+  id           Int        @id @default(autoincrement()) // Use autoincrement for IDs
+  imageString  String
+  title        String
+  age          Int
+  duration     Float
+  overview     String
+  release      Int
+  videoSource  String
+  category     String
+  youtubeString String
+  WatchLists   WatchList[] // No need to define relation name here
+
+  createAt     DateTime    @default(now())
+}
+
+model WatchList {
+  id       String  @id @default(uuid())
+  userId   String
+  movie Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
+
+  @@map("watchlists")
 }
  
 model VerificationToken {
